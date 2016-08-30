@@ -1,0 +1,45 @@
+#!/bin/bash
+#program
+#  create file by name and user input for better pratice  
+#History
+#2015/Dec 6 zhouhao2 first release
+#next target : add function to receive args(like the two sh & usage),and print help information
+
+read -p "please input your file name :" filename 
+
+#get date and file prefix
+date=$(date +%Y%m%d)
+file_prefix=$(cat .file_prefix)
+file_postfix=$(cat .file_postfix)
+number=$(cat .number_prefix)
+number_tmp=$number
+
+#format the file's prefix,something like file_prefix_000_date_usage
+if [ $number -lt 10 ] ;then
+   number=00$number
+elif [ $number -lt 100 ];then
+   number=0$number
+elif [ $number -gt 1000 ];then
+   echo file numbre is over 1000
+   exit 0
+fi
+
+#increase the number and get full file name
+number_tmp=$(( ${number_tmp}+1 ))
+echo "${number_tmp}" > tmp_pp
+
+#cp model file to the desire name
+if [ $? -eq 0 ];then
+    filename_full="${file_prefix}_${number}_${date}_${filename}${file_postfix}"
+    cp .program_model $filename_full
+else
+   echo error
+fi
+
+# remove the middle file
+mv tmp_pp .number_prefix
+
+chmod a+x $filename_full
+
+echo successfully create file $filename_full
+
