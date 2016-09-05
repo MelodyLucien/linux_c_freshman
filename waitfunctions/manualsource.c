@@ -14,14 +14,15 @@ int main(int argc, char *argv[])
     if (cpid == 0) {            /* Code executed by child */
         if (argc == 1){
             printf("i am child now i pause()\n");
-            pause();   
+            pause();
+            printf("i resume now \n");
          }/* Wait for signals */
 
          //use _exit to not relase some resource shared by parents
         _exit(atoi(argv[1]));          /* atoi() for converting string to int*/
 
     } else {
-         printf("Child PID is %d, groupid = %d\n", cpid,getpgid(cpid));
+         printf("child PID is %d, groupid = %d\n", cpid,getpgid(cpid));
          /* Code executed by parent */
         do {
             w = waitpid(cpid, &status, WUNTRACED | WCONTINUED);
