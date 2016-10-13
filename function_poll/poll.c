@@ -19,7 +19,7 @@ char buf[MAX_BUFFER_SIZE];
 int i, res, real_read, maxfd;
 
 // open two file with proper permissions
-fds[0].fd = 0;
+fds[0].fd =0; //open ("in1", O_RDONLY|O_NONBLOCK);
 
 
 fds[0].events=POLLIN;
@@ -27,13 +27,17 @@ fds[0].events=POLLIN;
 // wait for the event and do sthwhile(fds[0].events || fds[1].events || 
 while(fds[0].events)
 { 
-   printf("poll from standered input !!");
+   printf("before poll from standered input !!");
    int k=-2;
-   if ((k=poll(fds, IN_FILES, TIME_DELAY)) <= 0) 
+   //if it is a nomoral file will return 0 ,but a fifo will block,such as fd 0,you can try
+   if ((k=poll(fds, IN_FILES, TIME_DELAY)) <= 0)
    {
+   printf("after poll error from standered input !!");
     printf("poll error,return value(0--timeout) is %d\n",k);
     return 1;
    }
+
+   printf("after nomoral poll from standered input !!");
   
     if (fds[0].revents)
     {
@@ -51,8 +55,8 @@ while(fds[0].events)
      else if (!real_read)
      {
        printf("read fail and return %d ,the fd %d is closed\n",real_read,i);
-	   fds[0].events = 0;
-       close(fds[0].fd);
+       fds[0].events = 0;
+     close(fds[0].fd);
      }
      else
      {
