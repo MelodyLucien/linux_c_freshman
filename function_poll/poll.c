@@ -21,13 +21,14 @@ int i, res, real_read, maxfd;
 // open two file with proper permissions
 fds[0].fd =0; //open ("in1", O_RDONLY|O_NONBLOCK);
 
-
 fds[0].events=POLLIN;
 
-// wait for the event and do sthwhile(fds[0].events || fds[1].events || 
+//if you don't add \n at the end of printf,it will not be printed on screen ,cause line buffer
+printf("start while loop !!\n");
+// wait for the event and do sthwhile(fds[0].events || fds[1].events ||
 while(fds[0].events)
-{ 
-   printf("before poll from standered input !!");
+{
+   printf("before poll from standered input !!\n");
    int k=-2;
    //if it is a nomoral file will return 0 ,but a fifo will block,such as fd 0,you can try
    if ((k=poll(fds, IN_FILES, TIME_DELAY)) <= 0)
@@ -38,7 +39,7 @@ while(fds[0].events)
    }
 
    printf("after nomoral poll from standered input !!");
-  
+
     if (fds[0].revents)
     {
      memset(buf, 0, MAX_BUFFER_SIZE);
@@ -60,7 +61,7 @@ while(fds[0].events)
      }
      else
      {
-     
+
        if ((buf[0] == 'q') || (buf[0] == 'Q'))
        {
        printf("read from fd 0 and the character is %c \n",buf[0]);
