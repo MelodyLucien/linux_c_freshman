@@ -1,0 +1,10 @@
+[commit type(feature or structure)]:
+
+[new knowleage]:
+
+[some application(link or example)]:
+
+[new skill(where to apply?)]:
+
+
+
