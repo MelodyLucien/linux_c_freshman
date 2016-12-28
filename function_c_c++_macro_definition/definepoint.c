@@ -3,6 +3,7 @@
 #define logargs(args...) {printf(args); putchar('\n');}
 
 int main(){
+  printf("%s\n",__func__);
   log("i feel good");
   logargs("i feel good");
   return 0;
