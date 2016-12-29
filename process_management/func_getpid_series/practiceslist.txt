@@ -1,0 +1,11 @@
+getppid
+getpid
+getpgrp
+getpgid
+getdtablesize :get the max number of files that can be opened
+setpgrp
+setpgid
+_exit
+exit
+execve ***
+
