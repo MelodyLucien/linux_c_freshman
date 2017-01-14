@@ -18,12 +18,17 @@ int main(){
 
     gvar--;
     lvar--;
+    while(1){
+      ;
+    }
 
     printf("i am in sub process %d\n",getpid());
     printf("the vars  change: gvar = %d,lvar=%d\n",gvar,lvar);
     _exit(0);
  }else{
-    
+    while(1){
+      ;
+    }
     printf("i am in father process %d\n",getpid());
     printf("the vars change: gvar = %d,lvar=%d\n",gvar,lvar);
  }
