@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<sys/types.h>
+#include<sys/stat.h>
 #include<unistd.h>
 #include<fcntl.h>
 
@@ -10,7 +11,7 @@
 void rread(int fd,void *bufftemp){
 
    int count =read(fd,bufftemp,10);
-   if(count!=0){ 
+   if(count!=0){
      ((char *)bufftemp)[10]='\0';
      printf("read cotent:%s\n",(char *)bufftemp);
    }else{
@@ -23,7 +24,7 @@ int main(){
    char bufftemp[1024];
    fd=open("/home/zhouhao2/linux_c_freshman/file_management/func_chown/practices/ftest.txt",O_RDWR);
    if(fd == -1){
-     perror("open error\n"); 
+     perror("open error\n");
    }else{
      printf("open success!\n");
    }
@@ -32,7 +33,7 @@ int main(){
    rread(fd,bufftemp);
 
    int offset=lseek(fd,5,SEEK_CUR);
-  
+
    printf("after lseek!!\n");
    rread(fd,bufftemp);
 
@@ -45,7 +46,7 @@ int main(){
    printf("after write!!\n");
 
    rread(fd,bufftemp);
-   
+
    if((res=fchown(fd,1000,0))!=0){
      printf("fchown error,%d\n",res);
    }else{
@@ -53,5 +54,10 @@ int main(){
    }
 
    close(fd);
+
+printf("umask");
+umask(S_IRGRP|S_IWGRP|S_IROTH|S_IWOTH|S_IRUSR | S_IWUSR);
+fd=open("tt",O_CREAT);
+
    return 0;
 }
