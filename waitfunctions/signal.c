@@ -3,7 +3,10 @@
 #include <signal.h> //  our new library 
 volatile sig_atomic_t flag = 0;
 void my_function(int sig){ // can be called asynchronously
+  printf("my invoke myfuinction start\n");
   flag = 1; // set flag
+  printf("my invoke myfuinction end\n");
+  exit(3);
 }
 
 int main(){
