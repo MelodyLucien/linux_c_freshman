@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
          /* Code executed by parent */
         do {
             w = waitpid(cpid, &status, WUNTRACED | WCONTINUED);
+            printf("after child process sstate change!\n");
             if (w == -1) {
                 perror("waitpid");
                 exit(EXIT_FAILURE);

@@ -1,0 +1,2 @@
+addr2line -C -f -e a.so addr
+
