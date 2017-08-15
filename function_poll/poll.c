@@ -7,7 +7,7 @@
 #include <errno.h>
 #include <poll.h>
 
-#define MAX_BUFFER_SIZE   1024  //  the maximum of buffer size
+#define MAX_BUFFER_SIZE  1024  //  the maximum of buffer size
 #define IN_FILES   1    // the count of fds
 #define TIME_DELAY   6000    //the time delay by millsecond
 
