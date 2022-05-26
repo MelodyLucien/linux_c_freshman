@@ -30,6 +30,14 @@ target_link_libraries(${PROJECT_NAME}2 LINK_PUBLIC ${TestLib})
 # 10. 编译动态链接库
 add_library(${PROJECT_NAME}-shared SHARED ${DIR_SRCS})
 
+# add gdb debug info
+#set(CMAKE_CXX_FLAGS   "-g")
+# don't optimize code
+#set(CMAKE_CXX_FLAGS_DEBUG   "-O0" )
+
+#add options
+option(USE_DEBUG_VERSION "Use debug for development" ON)
+
 #[[# 添加子工程
 add_subdirectory(test)]]
 
