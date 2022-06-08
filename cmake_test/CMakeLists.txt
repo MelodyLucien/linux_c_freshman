@@ -62,6 +62,15 @@ message(${CMAKE_HOST_SYSTEM_NAME})
 # 输出宿主机处理器架构
 message(${CMAKE_HOST_SYSTEM_PROCESSOR})
 
+# 设置交叉编译系统名称
+SET(CMAKE_SYSTEM_NAME Linux)
+
+# 设置交叉编译c编译器
+SET(CMAKE_C_COMPILER  /usr/bin/aarch64-linux-gnu-gcc-5)
+
+# 设置交叉编译cpp编译器
+SET(CMAKE_CXX_COMPILER /usr/bin/aarch64-linux-gnu-g++-5)
+
 #[[
  生成动态链接库并进行安装在指定目录
  https://zhuanlan.zhihu.com/p/102955723
