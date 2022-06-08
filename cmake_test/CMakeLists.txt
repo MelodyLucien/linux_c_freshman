@@ -56,6 +56,12 @@ option(USE_DEBUG_VERSION "Use debug for development" ON)
 #[[# 添加子工程
 add_subdirectory(test)]]
 
+# 输出宿主机系统名称，如Linux
+message(${CMAKE_HOST_SYSTEM_NAME})
+
+# 输出宿主机处理器架构
+message(${CMAKE_HOST_SYSTEM_PROCESSOR})
+
 #[[
  生成动态链接库并进行安装在指定目录
  https://zhuanlan.zhihu.com/p/102955723
