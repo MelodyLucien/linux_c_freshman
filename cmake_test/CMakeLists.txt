@@ -42,6 +42,14 @@ add_library(${PROJECT_NAME}-shared SHARED ${DIR_SRCS})
 # don't optimize code
 #set(CMAKE_CXX_FLAGS_DEBUG   "-O0" )
 
+# 添加编译选项 
+option(USE_CONSOLE_LOG "Use console log for dev" ON)
+
+# 根据编译选项添加宏定义
+if(USE_CONSOLE_LOG)
+    add_definitions(-DDEBUG)
+endif()
+
 #add options
 option(USE_DEBUG_VERSION "Use debug for development" ON)
 
